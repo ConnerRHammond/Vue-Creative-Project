@@ -43,7 +43,7 @@
 </div>
 </template>
 
-<<script>
+<script>
 import Jokes from "../components/Jokes.vue"
 export default {
   name: 'Home',

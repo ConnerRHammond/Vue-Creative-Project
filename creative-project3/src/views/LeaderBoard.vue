@@ -18,8 +18,6 @@ export default {
   name: 'LeaderBoard',
   data(){
       return{
-          img:'',
-          check: true
       }
   },
   computed: {
@@ -34,13 +32,32 @@ export default {
                 index = i;
             }
         }
-        if (this.$root.$data.Jokes[index].like == 0){
-            this.check = false;
-        }
-        this.img = '/images/jokes/'+this.$root.$data.Jokes[index].image;
         return this.$root.$data.Jokes[index];
-    }
     },
+    check(){
+         var max = 0;
+        var index = 0;
+        for(var i = 0; i<this.$root.$data.Jokes.length;i++ ){
+            if (this.$root.$data.Jokes[i].like > max){
+                index = i;
+            }
+        }
+        if (this.$root.$data.Jokes[index].like == 0){
+          return false;
+        }
+        return true;
+    },
+    img(){
+        var max = 0;
+        var index = 0;
+        for(var i = 0; i<this.$root.$data.Jokes.length;i++ ){
+            if (this.$root.$data.Jokes[i].like > max){
+                index = i;
+            }
+        }
+        return '/images/jokes/'+this.$root.$data.Jokes[index].image;
+    }
+},
 }
 </script>
 <style>
