@@ -2,10 +2,11 @@
 <div>
   <div class = "addJoke">
     <div class ="intro" >
-      <p><h3>Welcome to the Joke Factory</h3>Welcome to the Joke Factory
-          Add a photo or like your favorite joke!</br>
+        <h3>Welcome to the Joke Factory</h3>
+          <p>Welcome to the Joke Factory
+          Add a photo or like your favorite joke!
           Check the most liked in the top right corner.
-      </p>
+          </p>
       
     </div>
     <h1>Add a joke!!!</h1>
@@ -30,11 +31,11 @@
       </table>         
      <form v-on:submit.prevent="addJoke">
         <input v-model="Title" placeholder="Title">
-        </br>
+        <br>
         <textarea v-model="Joke" placeholder="ADD JOKE HERE"></textarea>
-        </br>
+        <br>
         <input v-model="type" placeholder="type">
-        </br>
+        <br>
         <button type="submit">add</button>
   </form>
   </div>
