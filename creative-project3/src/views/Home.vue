@@ -65,7 +65,8 @@ export default {
         name: this.Title,
         joke: this.Joke,
         type: this.type,
-        image:this.image
+        image:this.image,
+        like: 0
       })
       this.Title ='';
       this.Joke ='';
@@ -116,7 +117,7 @@ export default {
       return this.$root.$data.Jokes;
     },
     currentId(){
-      return this.$root.$data.Jokes.length;
+      return this.$root.$data.Jokes.length+1;
     },
     currentImage(){
       return "/images/jokes/"+this.image

@@ -16,6 +16,7 @@
         <h5>Categories: {{joke.type}}</h5>
         <h5>Likes : {{joke.like}}</h5>
          <button class="auto" v-on:click="addLike(joke)">Like</button>
+         <button class="auto" v-on:click="deletelike(joke)">Delete Like</button>
       </div>
     </div>
   </div>
@@ -29,6 +30,9 @@ export default {
     methods:{
       addLike(joke){
           this.$root.$data.Jokes[joke.id-1].like +=1;
+      },
+      deletelike(joke){
+          this.$root.$data.Jokes[joke.id-1].like -=1;
       }
   }
 }
