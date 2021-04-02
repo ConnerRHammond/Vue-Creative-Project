@@ -29,7 +29,7 @@
           <td><button class = "button" v-on:click ="i10"> <img src="/images/jokes/Laughing10.jpg"></button></td>
         </tr>
       </table>         
-     <form v-on:submit.prevent="addJoke">
+     <form v-on:submit.prevent="addJoke,upload">
         <input v-model="Title" placeholder="Title">
         <br>
         <textarea v-model="Joke" placeholder="ADD JOKE HERE"></textarea>
@@ -44,6 +44,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import Jokes from "../components/Jokes.vue"
 export default {
   name: 'Home',
@@ -60,21 +61,36 @@ export default {
     }
   },
   methods:{
-     addJoke(){
-        this.$root.$data.Jokes.push({
-        id: this.currentId,
-        name: this.Title,
-        joke: this.Joke,
-        type: this.type,
-        image:this.image,
-        like: 0
-      })
-      this.Title ='';
-      this.Joke ='';
-      this.type ='';
-      this.image='';
-      this.imageClicked = false;
-    },
+      async upload() {
+        try {
+          await axios.post('/api/joke', {
+            id: this.currentId,
+            name: this.Title,
+            joke: this.Joke,
+            type: this.type,
+            image:this.image,
+            like: 0
+          });
+        } catch (error) {
+          console.log(error);
+        }
+      },
+    //  addJoke(){
+    //     this.$root.$data.Jokes.push({
+    //     id: this.currentId,
+    //     name: this.Title,
+    //     joke: this.Joke,
+    //     type: this.type,
+    //     image:this.image,
+    //     like: 0
+    //   })
+    //   this.Title ='';
+    //   this.Joke ='';
+    //   this.type ='';
+    //   this.image='';
+    //   this.imageClicked = false;
+
+    // },
     i2(){
         this.imageClicked = true;
         this.image = 'Laughing2.jpg';
@@ -118,7 +134,7 @@ export default {
       return this.$root.$data.Jokes;
     },
     currentId(){
-      return this.$root.$data.Jokes.length+1;
+      return this.$root.$data.Jokes[this.$root.$data.Jokes.length-1].id+1;
     },
     currentImage(){
       return "/images/jokes/"+this.image
